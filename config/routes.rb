@@ -11,4 +11,8 @@ Rails.application.routes.draw do
 
   get '/add_project', to: 'projects#new'
   post '/add_project', to: 'projects#create'
+
+  get '/work_day', to: 'work_days#index'
+  post '/work_day', to: 'work_days#create'
+  
 end

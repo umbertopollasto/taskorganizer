@@ -1,0 +1,26 @@
+<%= @work_day.errors.inspect %>
+<%= @work_days.inspect %>
+<%= form_with model: @work_day,
+              :html => {:"data-users-target" => 'form'}, 
+              class: 'mt-8 space-b-4', 
+              url: work_day_path do |form|%>  
+  <div class='my-2' >
+    <%= form.label :Select_a_project %><br>
+    <%= form.select :project_id, @projects.map { |project| [project.name, project.id]}, {include_blank: true} , {class: 'select2'} %>
+  </div>
+  <div class='my-2'>
+    <%= form.label :Select_user %><br>
+    <%= form.select :user_id , @users.map { |user| [user.name +  " " + user.surname, user.id]}, {include_blank: true} , {class: 'select2'} %>
+  </div>
+
+  <div >
+    <%= form.date_field :work_start, class: 'cursor-pointer' %>
+    <%= form.date_field :work_end, class: 'cursor-pointer' %>
+    <%= form.time_field :started_at %>
+    <%= form.time_field :end_at %>
+  </div>
+
+   <div class="group cursor-pointer relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <%= form.submit class: 'group-hover: cursor-pointer' %>
+        </div>
+<% end %>

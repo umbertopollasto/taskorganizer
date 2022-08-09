@@ -2,13 +2,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @users = User.all
-    @table_columns = [
-      'Username',
-      'Email',
-      'Name',
-      'Surname',
-      'Role'
-    ]
   end
 
   def create

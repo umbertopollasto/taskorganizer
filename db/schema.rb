@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_08_124454) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_082416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "project_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.datetime "work_start"
+    t.datetime "work_end"
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id", "project_id", "work_start", "work_end"], name: "unique_project_user"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -21,14 +31,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_08_124454) do
     t.index ["name"], name: "unique_names", unique: true
   end
 
-  create_table "users", id: false, force: :cascade do |t|
-    t.string "username"
+  create_table "users", force: :cascade do |t|
     t.string "email", null: false
+    t.string "name", null: false
+    t.string "surname", null: false
     t.string "password_digest"
-    t.integer "role"
-    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }
-    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }
-    t.index ["username"], name: "unique_usernames", unique: true
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "unique_emails", unique: true
   end
 
 end

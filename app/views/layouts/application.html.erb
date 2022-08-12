@@ -10,12 +10,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
     <header> 
       <%= render partial: "shared/navbar" %>
       </header>
     <main class="container mx-auto mt-4 px-5 flex flex-col">  
+      <%= render partial: "shared/flash" %>
       <%= yield %>
     </main>
   </body>

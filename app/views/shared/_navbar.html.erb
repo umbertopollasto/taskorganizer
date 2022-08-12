@@ -1,3 +1,4 @@
+<%= @current_user.inspect%>
 <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
   <nav class="relative flex items-center justify-between sm:h-10 lg:justify-start" aria-label="Global">
     <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
@@ -17,10 +18,20 @@
         </div>
       </div>
     </div>
-    <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-      <%= link_to "Employee", add_user_path, method: :get, class: 'nav-item nav-link' %>
-      <%= link_to "Project",  add_project_path,method: :get, class: 'nav-item nav-link' %>
-      <%= link_to "Work day",  work_day_path,method: :get, class: 'nav-item nav-link' %>
+    <div class="flex w-full">
+      <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
+        <%= link_to "Employee", add_user_path, method: :get, class: 'nav-item nav-link' %>
+        <%= link_to "Project",  add_project_path,method: :get, class: 'nav-item nav-link' %>
+        <%= link_to "Work day",  work_day_path,method: :get, class: 'nav-item nav-link' %>
+      </div>
+      <div class="hidden md:flex md:pr-4 md:space-x-8 grow justify-end">
+        <% if current_user%>
+           <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+           <%= link_to @current_user.name, profile_path(:id => @current_user.id), method: :get %>
+        <% else %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary rounded-pill" %>
+        <% end %>
+      </div>
     </div>
   </nav>
 </div>

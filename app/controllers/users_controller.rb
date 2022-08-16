@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @role = 'admin' if current_user.has_role? :admin
     @user = User.find(@current_user[:id])
     @total_working_hours = UsersHelper.total_month_hours(@current_user[:id])
     @all_projects = UsersHelper.total_hours_all_project(@current_user[:id])

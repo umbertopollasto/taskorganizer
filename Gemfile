@@ -79,3 +79,7 @@ gem 'business_time'
 gem 'devise'
 
 gem 'dry-monads'
+
+gem 'pundit'
+
+gem 'rolify'

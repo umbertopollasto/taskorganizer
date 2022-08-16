@@ -10,16 +10,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  # @params = params[:user]
-  # @user = User.new(configure_sign_up_params)
-  # @user.valid?
-  # @errors = @user.errorsv
-
-  # return root_path, status: :unprocessable_entity unless User.find_by(email: @params[:email]).nil?
-
-  # super#
-  # end
+  #def create
+  #  super
+  #  user = User.last
+  # user.add_role :
+  #end
 
   # GET /resource/edit
   # def edit

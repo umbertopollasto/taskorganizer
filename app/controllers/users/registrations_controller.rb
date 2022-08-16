@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :configure_sign_up_params, only: [:create]
 
@@ -17,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.valid?
     @errors = @user.errors
 
-    # return root_path, status: :unprocessable_entity unless User.find_by(email: @params[:email]).nil?
+    return root_path, status: :unprocessable_entity unless User.find_by(email: @params[:email]).nil?
 
     super
   end

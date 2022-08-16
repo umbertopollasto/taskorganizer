@@ -19,4 +19,8 @@ Rails.application.routes.draw do
 
   get '/work_day', to: 'work_days#index'
   post '/work_day', to: 'work_days#create'
+
+  # Linking Users to projects
+  get '/project_users', to: 'project_users#new'
+  post '/project_users', to: 'project_users#create'
 end

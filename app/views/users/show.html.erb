@@ -1,3 +1,4 @@
+
 <div class="mx-auto w-full item-center grow overflow-x-auto relative">
   <table class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -14,15 +15,15 @@
       </tr>
     </thead>
     <tbody>
-    
+    <div class="w-max rounded-xl bg-gray-100 px-3 py-2" >
+    <%= @total_working_hours %>
+    </div>
     <% if @user %>
-      <% @user.project_users
-              .select(:user_id,:project_id,'min(project_users.work_start) as work_start')
-              .group(:user_id,:project_id).each do | project |%>
+      <% @all_projects.each do | project |%>
         <tr class="g-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <td class="px-3 py-2"><%= project.project.name %></td>
-          <td class="px-3 py-2"><%= project.work_start %></td>
-          <td class="px-3 py-2"><%= project.project.name %></td>
+          <td class="px-3 py-2"><%= project['name'] %></td>
+          <td class="px-3 py-2"><%= project['name'] %></td>
+          <td class="px-3 py-2"><%= project['working_hours'] %></td>
         </tr> 
       <% end %>
     <% end %>

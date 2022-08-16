@@ -10,17 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_10_132402) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_16_075434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "project_users", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "project_id"
-    t.datetime "work_start"
-    t.datetime "work_end"
+  create_table "project_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
     t.index ["project_id"], name: "index_project_users_on_project_id"
-    t.index ["user_id", "project_id", "work_start", "work_end"], name: "unique_project_user"
+    t.index ["user_id", "project_id"], name: "unique_project_user", unique: true
     t.index ["user_id"], name: "index_project_users_on_user_id"
   end
 
@@ -45,6 +43,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_132402) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["email"], name: "unique_emails", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "work_days", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "work_start", null: false
+    t.datetime "work_end", null: false
+    t.index ["project_id"], name: "index_work_days_on_project_id"
+    t.index ["user_id", "project_id", "work_start", "work_end"], name: "unique_work_days"
+    t.index ["user_id"], name: "index_work_days_on_user_id"
   end
 
 end

@@ -22,6 +22,7 @@
       <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
         <%= link_to "Employee", add_user_path, method: :get, class: 'nav-item nav-link' %>
         <%= link_to "Project",  add_project_path,method: :get, class: 'nav-item nav-link' %>
+        <%= link_to "Add User to Project",  project_users_path,method: :get, class: 'nav-item nav-link' %>
         <%= link_to "Work day",  work_day_path,method: :get, class: 'nav-item nav-link' %>
       </div>
       <div class="hidden md:flex md:pr-4 md:space-x-8 grow justify-end">

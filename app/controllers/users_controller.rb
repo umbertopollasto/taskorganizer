@@ -19,7 +19,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(@current_user[:id])
+    @total_working_hours = UsersHelper.total_month_hours(@current_user[:id])
+    @all_projects = UsersHelper.total_hours_all_project(@current_user[:id])
   end
 
   private

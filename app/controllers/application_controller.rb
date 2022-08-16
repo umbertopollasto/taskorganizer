@@ -2,13 +2,11 @@
 
 #
 # ApplicationController
+require 'dry/monads'
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
- 
   before_action :set_current_user
-  
-
   #
   # Set current user global attributes like name , surname , email
   #

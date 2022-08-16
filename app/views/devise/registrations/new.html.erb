@@ -1,17 +1,12 @@
 
 <div class="w-1/2 mx-auto">
   <h2 class="text-2xl font-bold">Sign up</h2>
-  <% resource.errors.full_messages.each do |msg| %>
-        <p class='pale-red'><%= msg %></p>
-      <% end %>
-  <%= @user.errors.inspect%>
-<%= devise_error_messages! %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <div class="grid grid-cols-2 gap-4 space-y-2" >
-      
+  <%= form_for(resource, as: resource_name, data: { turbo: false }, url: registration_path(resource_name)) do |f| %>
+    
+    <%= devise_error_messages! %>
+    <div class="grid grid-cols-2 gap-4 space-y-2" >  
       <div class="field mt-2">
-        <%= f.label :email %><br />
+        <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: 'appearance-none rounded-md 
                                       relative block w-full 
                                       px-3 py-2 border border-gray-300 
@@ -21,7 +16,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :name %><br />
+        <%= f.label :name %>
         <%= f.text_field:name, autofocus: true, required: true,  autocomplete: "email", class: 'appearance-none rounded-md 
                                       relative block w-full 
                                       px-3 py-2 border border-gray-300 
@@ -64,7 +59,12 @@
       </div>
     </div>
 
-    <div class="actions group cursor-pointer relative w-1/2 my-10 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <div class="actions 
+              group cursor-pointer
+               relative w-1/2 my-10 flex 
+               justify-center py-2 px-4 border 
+               border-transparent text-sm font-medium rounded-md text-white
+               bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <%= f.submit "Sign up"%>
     </div>
   <% end %>

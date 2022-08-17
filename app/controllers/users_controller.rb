@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   def new
     @user = User.new
@@ -5,16 +7,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.transaction do
-      @user = User.new(user_params)
-      @users = User.all
-      @exists = User.where(email: @user[:email]).take
+    @user = User.new(user_params)
+    @users = User.all
 
-      if !@exists && @user.save
-        redirect_to add_user_path
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @user.save
+      redirect_to add_user_path
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -28,6 +27,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :name, :surname, :role, :password_digest)
+    params.require(:user).permit(:email, :name, :surname, :role, :password)
   end
 end

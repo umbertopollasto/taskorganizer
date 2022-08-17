@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_135729) do
     t.datetime "work_start", null: false
     t.datetime "work_end", null: false
     t.index ["project_id"], name: "index_work_days_on_project_id"
-    t.index ["user_id", "project_id", "work_start", "work_end"], name: "unique_work_days"
+    t.index ["user_id", "project_id", "work_start", "work_end"], name: "unique_work_days", unique: true
     t.index ["user_id"], name: "index_work_days_on_user_id"
   end
 

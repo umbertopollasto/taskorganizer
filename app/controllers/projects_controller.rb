@@ -1,4 +1,10 @@
+# frozen_string_literal: true
+
+#
+# Projects controller
+#
 class ProjectsController < ApplicationController
+  include Dry::Monads[:result]
   def new
     @project = Project.new
     @projects = Project.all
@@ -8,11 +14,9 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @projects = Project.all
 
-    if @project.save
-      redirect_to add_project_path
-    else
-      render :new, status: :unprocessable_entity
-    end
+    redirect_to add_project_path and return if @project.save
+
+    render :new, status: :unprocessable_entity
   end
 
   private

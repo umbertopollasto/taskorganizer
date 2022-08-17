@@ -83,3 +83,5 @@ gem 'dry-monads'
 gem 'pundit'
 
 gem 'rolify'
+
+gem 'make_exportable'

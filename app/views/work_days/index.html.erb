@@ -1,2 +1,7 @@
+<% if @is_admin %>
+  <%= render partial: "add_multiple" %>
+<% else %>
+  <%= render partial: "add_single" %>
+<% end %>
 
-<%= render partial: "add" %>
+<%= @is_admin %>

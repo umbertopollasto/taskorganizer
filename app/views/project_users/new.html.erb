@@ -9,7 +9,8 @@
   <div class="space-y-4 grid grid-cols-1 gap-2" >
     <div class="mt-4">
       <%= form.label :Select_a_project %><br>
-      <%= form.select :project_id, @projects.map { | project | [project.name, project.id]}, {include_blank: true} , {class: 'select2 w-full'} %>
+      
+      <%= form.select :project_id, @projects.map { | project | [project.name, project.id]}, {include_blank: true} , {class: 'select2 w-full'}%>
       <% @project_user.errors.full_messages_for(:project).each do |message| %>
                 <div class="bg-red-600 text-white px-3 py-2"><%= message %></div>
       <% end %>

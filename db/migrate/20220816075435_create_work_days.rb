@@ -6,6 +6,6 @@ class CreateWorkDays < ActiveRecord::Migration[7.0]
       t.datetime :work_start, null: false
       t.datetime :work_end, null: false
     end
-    add_index :work_days, %i[user_id project_id work_start work_end], name: 'unique_work_days'
+    add_index :work_days, %i[user_id project_id work_start work_end], name: 'unique_work_days', unique: true
   end
 end

@@ -5,6 +5,6 @@ class CreateProjectUsers < ActiveRecord::Migration[7.0]
       t.belongs_to :project, null: false, foreign_kye: true
       t.timestamps
     end
-    add_index :project_users, %i[user_id project_id], name: 'unique_project_user'
+    add_index :project_users, %i[user_id project_id], name: 'unique_project_user', unique: true
   end
 end

@@ -15,8 +15,12 @@ module UsersHelper
     @total_hours
   end
 
+  # TODO: Refactoring da fare
   def self.total_hours_all_project(user_id)
+    return unless user_id
+
     @all_project = []
+
     projects = WorkDay.select(:project_id).where(user_id: user_id.to_s).distinct
     projects.each do |project|
       total_hours = 0

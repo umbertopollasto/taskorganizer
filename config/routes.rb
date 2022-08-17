@@ -23,4 +23,13 @@ Rails.application.routes.draw do
   # Linking Users to projects
   get '/project_users', to: 'project_users#new'
   post '/project_users', to: 'project_users#create'
+
+  get '/users_by_project_id/:id', to: 'project_users#users_by_project'
+  get '/projects_by_user_id/:id', to: 'project_users#projects_by_user'
+
+  get '/export_all', to: 'work_days#export'
+
+  # exporter
+  get '/export', to: 'exporter#new'
+  get '/export_csv', to: 'exporter#create'
 end

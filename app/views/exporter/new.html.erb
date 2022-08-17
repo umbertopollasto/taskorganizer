@@ -1,0 +1,15 @@
+<div>
+  Export csv by month
+
+
+  <%= form_with(url: export_csv_path(format: "csv") , method: 'get', local: true) do |f| %>
+    <div class="space-y-2">
+          <%= f.label 'select_month' %><br>
+          <%= f.month_field :start_date %>
+        </div> 
+   <div class="group cursor-pointer relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+       
+          <%= f.submit "Export" , class: 'group-hover: cursor-pointer' %>
+        </div>
+    <%end%>
+</div>

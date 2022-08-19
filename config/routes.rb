@@ -27,9 +27,10 @@ Rails.application.routes.draw do
   get '/users_by_project_id/:id', to: 'project_users#users_by_project'
   get '/projects_by_user_id/:id', to: 'project_users#projects_by_user'
 
-  get '/export_all', to: 'work_days#export'
-
   # exporter
   get '/export', to: 'exporter#new'
   get '/export_csv', to: 'exporter#create'
+
+  # search bar
+  get '/search_users/:id', to: 'search_bar#search'
 end

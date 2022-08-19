@@ -1,0 +1,8 @@
+<%= form_with :html => {:"data-users-target" => 'form'}, 
+              class: 'w-2/3 flex', 
+              url: '' do |form|%>   
+  <%= form.select :search_bar ,[],{},{class: 'select2 searchbar border-0 grow'} %>
+  <span class="group cursor-pointer relative flex justify-center  px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"> 
+    <%= form.submit :search , class: 'group-hover: cursor-pointer' %>
+  </span> 
+<% end %>

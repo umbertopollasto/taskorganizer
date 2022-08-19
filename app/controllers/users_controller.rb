@@ -17,11 +17,23 @@ class UsersController < ApplicationController
     end
   end
 
+  #
+  # <Description>
+  #
+  # @return [<Type>] <description>
+  #
   def show
     @role = 'admin' if current_user.has_role? :admin
-    @user = User.find(@current_user[:id])
-    @total_working_hours = UsersHelper.total_month_hours(@current_user[:id])
-    @all_projects = UsersHelper.total_hours_all_project(@current_user[:id])
+
+    @user = User.find(params[:id])
+
+    @month = params[:month].blank? ? Date.today : Date.parse(params[:month])
+    @total_working_hours = WorkDaysHelper.total_month_hours(@user.id, @month.at_beginning_of_month,
+                                                            @month.end_of_month)
+    @all_projects = WorkDaysHelper.total_hours_all_project(@user.id, @month.at_beginning_of_month,
+                                                           @month.end_of_month)
+  rescue StandardError => e
+    redirect_to root_path, flash: { alert: Failure(e).failure }
   end
 
   private

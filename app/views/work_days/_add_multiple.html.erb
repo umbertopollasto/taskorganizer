@@ -2,7 +2,6 @@
 <div class='w-1/2 mx-auto'>
   <h2 class="font-semibold text-2xl">Add work day </h2>
 </div>
-<%= current_user.id%>
 <%= form_with model: @work_day,
             :html => {:"data-users-target" => 'form'}, 
             class: 'mt-8 space-y-4 w-1/2 mx-auto', 
@@ -29,8 +28,6 @@
     </div>
     <div>
       <%= form.label :End_date %>
-      <%= @start_date %>  <br>
-      
       <%= form.datetime_local_field :work_end, value: @start_date, class: 'cursor-pointer w-full' %>
     </div> 
   

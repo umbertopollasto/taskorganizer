@@ -5,6 +5,7 @@
 require 'dry/monads'
 
 class ApplicationController < ActionController::Base
+  
   before_action :authenticate_user!
   before_action :set_current_user
   before_action :set_role
@@ -19,6 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_role
-    @is_admin = (current_user and current_user.has_role? :admin)
+    @is_admin = current_user&.has_role?(:admin)
   end
 end

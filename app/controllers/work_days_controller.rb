@@ -2,6 +2,8 @@
 # <Description>
 #
 class WorkDaysController < ApplicationController
+  include Dry::Monads[:result]
+
   def init
     @users = set_users
     @projects = ProjectUser.select(:project_id, :user_id).distinct.where(user_id: current_user.id)
@@ -31,9 +33,9 @@ class WorkDaysController < ApplicationController
     ProjectUser.transaction do
       @work_day = WorkDay.new(project_user_params)
       if WorkDaysHelper.exists(@work_day.user_id, @work_day.work_start, @work_day.work_end).blank? && @work_day.save
-        redirect_to work_day_path
+        redirect_to work_day_path, flash: { notice: 'Work day added' }
       else
-        render :index, status: :unprocessable_entity
+        redirect_to work_day_path, flash: { alert: 'Work day has already present' }
       end
     end
   end
@@ -64,8 +66,8 @@ class WorkDaysController < ApplicationController
     users = User.all
 
     users.each do |user|
-      total_working_hours = UsersHelper.total_month_hours(user.id)
-      all_projects = UsersHelper.total_hours_all_project(user.id)
+      total_working_hours = WorkDaysHelper.total_month_hours(user.id)
+      all_projects = WorkDaysHelper.total_hours_all_project(user.id)
       next unless all_projects.any?
 
       all_projects.map do |project|

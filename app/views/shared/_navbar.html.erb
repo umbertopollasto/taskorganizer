@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="flex w-full wrap">
-      <div class="hidden lg:block md:ml-10 md:pr-4 md:space-y-2" >
+      <div class="hidden lg:block md:ml-10 md:pr-4 md:space-y-2 mr-auto" >
         <%= link_to "Employee", add_user_path, method: :get, 
           class: "nav-item nav-link px-1 lg:px-2 text-sm lg:text-md leading-4 py-3 hover:bg-gray-200 hover:rounded-md  #{ 'font-semibold bg-gray-200 rounded-md' if current_page?(add_user_path)  }" %>
         <%= link_to "Project",  add_project_path,method: :get, 
@@ -30,7 +30,7 @@
         <%= link_to "Work day",  work_day_path,method: :get, 
           class: "nav-item nav-link px-1 lg:px-2 text-sm lg:text-md leading-4 py-3 hover:bg-gray-200 hover:rounded-md  #{ 'font-semibold bg-gray-200 rounded-md' if current_page?(work_day_path)  }" %>
       </div>
-      <div class="ml-auto w-32 shrink-0 justify-end">
+      <div class="grow">
         <%= render partial:'shared/search_bar'%> 
       </div>
       <div class="hidden md:flex md:pr-4 md:space-x-8 ">

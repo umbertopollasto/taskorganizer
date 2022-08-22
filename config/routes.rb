@@ -33,4 +33,5 @@ Rails.application.routes.draw do
 
   # search bar
   get '/search_users/:id', to: 'search_bar#search'
+  post '/search_users', to: 'search_bar#submit'
 end

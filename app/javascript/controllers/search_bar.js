@@ -8,7 +8,6 @@ class SearchBar {
 
   search = (id) => {
     this.user_id = (id) ? id : 'null'
-    console.log(this.hostname)
     $(this.id).select2({
       ajax: {
         url: this.hostname + this.url + this.user_id,

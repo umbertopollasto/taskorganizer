@@ -1,0 +1,30 @@
+
+<div class='w-1/2 mx-auto'>
+  <h2 class="font-semibold text-2xl">Add work day </h2>
+</div>
+<%= form_with model: @project_user,
+            :html => {:"data-users-target" => 'form'}, 
+            class: 'mt-8 space-y-4 w-1/2 mx-auto', 
+            url: project_users_path do |form|%>  
+  <div class="space-y-4 grid grid-cols-1 gap-2" >
+    <div class="mt-4">
+      <%= form.label :Select_a_project %><br>
+      
+      <%= form.select :project_id, @projects.map { | project | [project.name, project.id]}, {include_blank: true} , {class: 'select2 w-full'}%>
+      <% @project_user.errors.full_messages_for(:project).each do |message| %>
+                <div class="bg-red-600 text-white px-3 py-2"><%= message %></div>
+      <% end %>
+    </div>
+    <div>
+      <%= form.label :Employees %><br>
+      <%= form.select :user_id, @users.map { | user | [user.email, user.id]}, {include_blank: true} , {class: 'select2 w-full'} %>
+      
+      <% @project_user.errors.full_messages_for(:user).each do |message| %>
+                <div class="bg-red-600 text-white px-3 py-2"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="group cursor-pointer relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <%= form.submit class: 'group-hover: cursor-pointer' %>
+    </div>
+  </div>
+<% end %>

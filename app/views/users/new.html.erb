@@ -1,0 +1,84 @@
+<% if current_user and current_user.has_role? :admin%>
+<div class="min-h-full flex group items-center justify-center py-2 px-4  sm:px-6 lg:px-2 my-10" data-controller="users">
+  <div class="w-full space-y-8">
+    <div>
+      <button  data-action="click->users#toggle" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+        <span>Add Employee </span>
+      </button>
+    </div>
+    <div class="w-1/2">
+      <%= form_with model: @user, 
+                    :html => {:"data-users-target" => 'form'}, 
+                    'data-users-target'  => 'data-users-target', 
+                    class: 'mt-8 space-y-4 ' + (@user.errors.messages.length().zero? ? 'hidden' : '') ,
+                     url: add_user_path do |form|%>
+        <div class="space-y-2">
+              <%= form.label :name %><br>
+              <%= form.text_field :name, class: 'appearance-none rounded-md 
+                                      relative block w-full 
+                                      px-3 py-2 border border-gray-300 
+                                      placeholder-gray-500 text-gray-900 
+                                      focus:outline-none
+                                      focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm' %>
+              <% @user.errors.full_messages_for(:name).each do |message| %>
+                <div class="bg-red-600 text-white px-3 py-2"><%= message %></div>
+              <% end %>
+        </div>
+
+        <div class="space-y-2">
+              <%= form.label :surname %><br>
+              <%= form.text_field :surname, class: 'appearance-none rounded-md 
+                                      relative block w-full 
+                                      px-3 py-2 border border-gray-300 
+                                      placeholder-gray-500 text-gray-900 
+                                      focus:outline-none
+                                      focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm' %>
+              <% @user.errors.full_messages_for(:surname).each do |message| %>
+                <div class="bg-red-600 text-white px-3 py-2"><%= message %></div>
+              <% end %>
+        </div>
+
+
+        <div class="space-y-2">
+          <%= form.label :email %><br>
+          <%= form.email_field :email, class: 'appearance-none rounded-md 
+                                  relative block w-full 
+                                  px-3 py-2 border border-gray-300 
+                                  placeholder-gray-500 text-gray-900 
+                                  focus:outline-none
+                                  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'%><br>
+          <% @user.errors.full_messages_for(:email).each do |message| %>
+            <div class="bg-red-600 text-white px-3 py-2 w-max"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div class="space-y-2">
+          <%= form.label :password %><br>
+          <%= form.password_field :password, class: 'appearance-none rounded-md 
+                                  relative block w-full 
+                                  px-3 py-2 border border-gray-300 
+                                  placeholder-gray-500 text-gray-900 
+                                  focus:outline-none
+                                  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm' %><br>
+        </div>
+          
+        <div class="space-y-2">
+          <%= form.label :role %><br>
+          <%= form.text_field :role, class: 'appearance-none rounded-md 
+                                  relative block w-full 
+                                  px-3 py-2 border border-gray-300 
+                                  placeholder-gray-500 text-gray-900 
+                                  focus:outline-none
+                                  focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm' %><br>
+        </div>
+
+        <div class="group cursor-pointer relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <%= form.submit class: 'group-hover: cursor-pointer' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+<%= render partial: "all" %>
